@@ -1,7 +1,7 @@
 // NexusFrame: busca de filmes e séries (TMDB via Supabase Edge Function) e lista salva no navegador.
 
-const SUPABASE_URL = "https://uswqdzfmscoypsyghpmp.supabase.co";
-const ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVzd3FkemZtc2NveXBzeWdocG1wIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMzMDQ5MTAsImV4cCI6MjEwODg4MDkxMH0.wIegX_ISOlC4tc48RoWUMBE46uloKJhrzJsyeWf3veg";
+const SUPABASE_URL = "https://wnbchbiqhnhuyrcuatly.supabase.co";
+const ANON_KEY = "sb_publishable_ofSyEpJuMAysiRmb20fngg_BNqk-enA";
 const SEARCH_URL = `${SUPABASE_URL}/functions/v1/movie-search`;
 const STORAGE_KEY = "nexusframe:saved-movies";
 const TERM_MIN_LENGTH = 2;
