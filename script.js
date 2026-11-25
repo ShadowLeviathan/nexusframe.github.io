@@ -7,6 +7,7 @@ const STORAGE_KEY = "nexusframe:saved-movies";
 const TERM_MIN_LENGTH = 2;
 const TERM_MAX_LENGTH = 100;
 const TYPE_LABELS = { movie: "Filme", tv: "Série" };
+const TMDB_IMAGE_URL = "https://image.tmdb.org/t/p/w500";
 
 const dom = {
   searchForm: document.querySelector("#search-form"),
@@ -112,6 +113,10 @@ function normalizeTitle(raw) {
     genres: Array.isArray(raw.genres) ? raw.genres.map(String) : [],
     overview: String(raw.overview || ""),
     cast: Array.isArray(raw.cast) ? raw.cast.map(String) : [],
+    posterPath: typeof raw.posterPath === "string" &&
+      raw.posterPath.startsWith("/")
+        ? raw.posterPath
+        : null
   };
 }
 
@@ -177,7 +182,27 @@ function createCard(item, footer) {
   const card = el("article", "movie-card");
 
   const band = el("div", "card-band");
+
+if (item.posterPath) {
+  const poster = el("img", "card-poster");
+
+  poster.src = `${TMDB_IMAGE_URL}${item.posterPath}`;
+  poster.alt = `Pôster de ${item.title}`;
+  poster.loading = "lazy";
+  poster.decoding = "async";
+
+  poster.addEventListener("error", () => {
+    band.classList.remove("has-poster");
+    band.replaceChildren(
+      el("span", "", item.title.charAt(0).toUpperCase())
+    );
+  });
+
+  band.classList.add("has-poster");
+  band.append(poster);
+} else {
   band.append(el("span", "", item.title.charAt(0).toUpperCase()));
+}
 
   const content = el("div", "card-content");
   const metaParts = [TYPE_LABELS[item.type], item.year ?? "Ano não informado", formatRating(item.rating)];
