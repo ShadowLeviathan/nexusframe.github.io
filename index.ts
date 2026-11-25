@@ -164,12 +164,53 @@ export default {
           popularity: item.popularity ?? 0,
         }));
 
-        // Reúne e ordena os resultados.
+        
+        // Reúne, ordena e limita os resultados.
         const results = [...movies, ...series]
           .sort((a, b) => b.popularity - a.popularity)
           .slice(0, 20);
-
-        return Response.json({ results });
+        
+        // Busca o elenco principal de cada título.
+        const resultsWithCast = await Promise.all(
+          results.map(async (item) => {
+            try {
+              const credits = await tmdbGet(
+                `${item.type}/${item.tmdbId}/credits`,
+                {
+                  language: "pt-BR",
+                },
+                token
+              );
+        
+              const cast = (credits.cast ?? [])
+                .map((person: any) => person.name)
+                .filter(
+                  (name: any) =>
+                    typeof name === "string" && name.trim().length > 0
+                )
+                .slice(0, 5);
+        
+              return {
+                ...item,
+                cast,
+              };
+        
+            } catch (error) {
+              console.error(
+                `Não foi possível carregar o elenco de ${item.title}:`,
+                error
+              );
+        
+              // Se os créditos falharem, o título continua sendo exibido.
+              return {
+                ...item,
+                cast: [],
+              };
+            }
+          })
+        );
+        
+        return Response.json({ results: resultsWithCast });
 
       } catch (error) {
         console.error("Erro na pesquisa:", error);
