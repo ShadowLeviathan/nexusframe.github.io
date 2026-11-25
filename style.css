@@ -79,6 +79,8 @@ input:focus, select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px r
 .skeleton { min-height: 340px; border-color: rgba(255,255,255,.05); background: #121b2e; animation: pulse 1.4s ease-in-out infinite; }
 @keyframes pulse { 50% { opacity: .55; } }
 .card-band { height: 96px; display: grid; place-items: center; background: radial-gradient(circle at 50% 35%,#596da0,#263654 48%,#121a2b); }
+.card-band.has-poster { height: auto; aspect-ratio: 2 / 3; overflow: hidden; background: #121a2b; }
+.card-poster { display: block; width: 100%; height: 100%; object-fit: cover; }
 .card-band span { font-size: 2.4rem; font-weight: 900; color: rgba(255,255,255,.75); }
 .card-content { display: flex; flex: 1; flex-direction: column; gap: 10px; padding: 14px; }
 .card-title { margin: 0; font-size: .98rem; line-height: 1.3; }
