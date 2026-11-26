@@ -151,10 +151,12 @@ async function handleSearch(event) {
   const term = dom.searchInput.value.trim();
 
   if (term.length < TERM_MIN_LENGTH || term.length > TERM_MAX_LENGTH) {
-    dom.searchStatus.textContent = `Digite entre ${TERM_MIN_LENGTH} e ${TERM_MAX_LENGTH} caracteres para pesquisar.`;
+    dom.searchError.textContent = `Digite entre ${TERM_MIN_LENGTH} e ${TERM_MAX_LENGTH} caracteres para pesquisar.`;
     dom.searchInput.focus();
     return;
   }
+  
+  dom.searchError.textContent = "";
 
   const requestId = ++searchRequestId;
   searchState = "loading";
