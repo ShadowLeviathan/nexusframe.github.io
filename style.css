@@ -144,3 +144,11 @@ textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(124,140
 .edit-label { color: var(--muted); font-size: .75rem; }
 .field-error { min-height: 1em; color: var(--danger); font-size: .72rem; }
 .edit-actions { margin-top: auto; padding-top: 8px; }
+
+.field-error {
+  color: #ff6b6b;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+  min-height: 1.2em;
+}
+
