@@ -12,6 +12,7 @@ const TMDB_IMAGE_URL = "https://image.tmdb.org/t/p/w500";
 const dom = {
   searchForm: document.querySelector("#search-form"),
   searchInput: document.querySelector("#search-input"),
+  searchError: document.querySelector("#search-error"),
   searchButton: document.querySelector("#search-button"),
   searchStatus: document.querySelector("#search-status"),
   typeFilter: document.querySelector("#type-filter"),
