@@ -39,9 +39,11 @@
 
             <form id="search-form" class="search-form">
               <label class="sr-only" for="search-input">Pesquisar filme ou série</label>
-              <input id="search-input" type="search" placeholder="Digite o título de um filme ou série..." autocomplete="off" maxlength="100" />
+              <input id="search-input" type="search" placeholder="Digite o título de um filme ou série..." autocomplete="off" maxlength="100" aria-describedby="search-error" />
               <button id="search-button" type="submit" class="button button-primary">Pesquisar</button>
             </form>
+
+            <p id="search-error" class="field-error" role="alert"></p>
           </div>
 
           <p id="search-status" class="status" role="status" aria-live="polite">Pesquise para ver resultados do TMDB.</p>
