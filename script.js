@@ -122,7 +122,13 @@ function normalizeTitle(raw) {
 
 function formatRating(rating) {
   if (rating === null) return "Sem nota";
-  return `★ ${rating.toLocaleString("pt-BR", { minimumFractionDigits: 1, maximumFractionDigits: 1 })}`;
+
+  const roundedRating = Math.round(rating * 10) / 10;
+
+  return `★ ${roundedRating.toLocaleString("pt-BR", {
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 1
+  })}`;
 }
 
 function setSearchLoading(isLoading) {
